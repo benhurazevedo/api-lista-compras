@@ -13,15 +13,15 @@ final class ListaController
     }
 	public function list($req, $res, array $args)
 	{
-        try 
-        {
+        #try 
+        #{
             $ListaDAO = $this->container['ListaDAO'];
             return $res->withJson($ListaDAO->list(), 200);
-        }
-        catch(\Exception $e)
-        {
-            return $res->withStatus(500);
-        }
+        #}
+        #catch(\Exception $e)
+        #{
+        #    return $res->withStatus(500);
+        #}
     }
     public function add($req, $res, array $args)
     {

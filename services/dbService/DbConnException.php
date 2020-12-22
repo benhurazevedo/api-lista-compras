@@ -3,7 +3,7 @@ namespace dbService;
 
 class DbConnException extends DbServiceException
 {
-    public function __construct($message, $code = 0, Exception $previous = null) 
+    public function __construct($message="", $code = 0, Exception $previous = null) 
     {
         // some code
     

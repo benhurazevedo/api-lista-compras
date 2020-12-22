@@ -3,9 +3,7 @@
 $app = new \Slim\App([
     'settings' => [
         'displayErrorDetails' => true
-		,'DSN' => 'sqlsrv:SERVER=DESKTOP-9K0552C\SQLEXPRESS;DATABASE=DB_PRODUCAO_TEMATICA'
-		,'DATABASE_USER' => 'sa'
-		,'DB_PASSWORD' => 'sa'
+		,'CONNECTION_STRING' => 'pgsql:host=localhost;dbname=lista_compras;user=usrLista;password=123456'
     ]
 ]);
 ?>

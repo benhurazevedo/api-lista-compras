@@ -16,7 +16,7 @@ class ConectorDAO
 		if ($conn == null) 
 		{
 			try{
-				$conn = new PDO($this->c['DSN'], $this->c['DATABASE_USER'], $this->c['DB_PASSWORD']);
+				$conn = new PDO($this->c['settings']['CONNECTION_STRING']);
 				$conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
 			} catch (\Exception $e)
 			{

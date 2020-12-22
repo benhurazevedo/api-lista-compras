@@ -7,11 +7,11 @@ class ListaDAO
     private $connector;
     function __construct(Container $c=null)
     {
-        if($conn==null)
+        if($c==null)
         {
-            exit("conector is empty");
+            exit("DIC is empty");
         }
-        $this->connector = $c['ConectorDAO'];
+        $this->connector = $c['dbConnService']->getConn();
     }
     public function list()
     {
@@ -20,7 +20,7 @@ class ListaDAO
                     cod
                     ,descricao
                     ,null as marcado
-            FROM [lista_compras]
+            FROM lista_compras
         ";
         $stmt = $this->connector->prepare($sql);
         try {
@@ -36,8 +36,8 @@ class ListaDAO
     {
         $sql = "
             delete
-            FROM [lista_compras]
-                where [cod] = :cod
+            FROM lista_compras
+                where cod = :cod
         ";
         $stmt = $this->connector->prepare($sql);
         $stmt->bindParam(":cod", $cod,PDO::PARAM_STR);
