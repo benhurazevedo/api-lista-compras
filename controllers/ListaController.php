@@ -29,7 +29,7 @@ final class ListaController
         {
             $postParams = $req->getParsedBody();
             $ListaDAO = $this->container['ListaDAO'];
-            return $res->withJson($ListaDAO->add($postParams), 200);
+            return $res->withJson(['cod' => $ListaDAO->add($postParams)], 200);
         }
         catch(\Exception $e)
         {
