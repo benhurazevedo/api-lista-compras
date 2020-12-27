@@ -13,15 +13,15 @@ final class ListaController
     }
 	public function list($req, $res, array $args)
 	{
-        #try 
-        #{
+        try 
+        {
             $ListaDAO = $this->container['ListaDAO'];
             return $res->withJson($ListaDAO->list(), 200);
-        #}
-        #catch(\Exception $e)
-        #{
-        #    return $res->withStatus(500);
-        #}
+        }
+        catch(\Exception $e)
+        {
+            return $res->withStatus(500);
+        }
     }
     public function add($req, $res, array $args)
     {
@@ -29,7 +29,7 @@ final class ListaController
         {
             $postParams = $req->getParsedBody();
             $ListaDAO = $this->container['ListaDAO'];
-            return $res-withJson($ListaDAO->add($postParams), 200);
+            return $res->withJson($ListaDAO->add($postParams), 200);
         }
         catch(\Exception $e)
         {
@@ -40,12 +40,12 @@ final class ListaController
     {
         try 
         {
-            if(!is_numeric($args['cod']))
+            if(!is_numeric($args['codigo']))
             {
                 return $res-withStatus(401);
             }
             $ListaDAO = $this->container['ListaDAO'];
-            $ListaDAO->remove($args['cod']);
+            $ListaDAO->remove($args['codigo']);
             return $res->withStatus(200);
         }
         catch(\Exception $e)

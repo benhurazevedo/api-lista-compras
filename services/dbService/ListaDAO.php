@@ -56,7 +56,7 @@ class ListaDAO
             (
                 descricao
             )
-            valuse (:descricao)
+            values (:descricao)
         ";
         $stmt = $this->connector->prepare($sql);
         $stmt->bindParam(":descricao", $params['descricao'],PDO::PARAM_STR);
