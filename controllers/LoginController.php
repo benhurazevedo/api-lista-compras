@@ -1,14 +1,14 @@
 <?php
+namespace controllers;
+
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use \Psr\Container\ContainerInterface as ContainerInterface;
-
-namespace controllers;
+use \Slim\Container as Container;
 
 class LoginController
 {
     private $container;
-    public function __construct(ContainerInterface $container)
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
