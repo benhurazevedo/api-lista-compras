@@ -6,7 +6,7 @@ use Slim\Router;
 final class ListaController
 {
 	private $router;
-	
+	private $container;
 	public function __construct($container)
     {
         $this->container = $container;
