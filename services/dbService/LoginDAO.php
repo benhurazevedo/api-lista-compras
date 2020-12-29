@@ -35,9 +35,12 @@ class LoginDAO
             throw new SqlCommandException($e);
         }
         
-        $LoginEncontrado = $stmt->fetch(PDO::FETCH_ASSOC) == null? 0 : 1;
-        
-        return $LoginEncontrado;   
+        $QuantidadeLoginsEncontrados = $stmt->fetch(PDO::FETCH_ASSOC)['quantidade'];
+	
+	if($QuantidadeLoginsEncontrados > 0)
+		return 1;
+	else
+		return 0;	
     }
 }
 ?>
