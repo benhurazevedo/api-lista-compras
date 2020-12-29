@@ -25,7 +25,7 @@ class AuthFilter
                 'usuario' => $headers['HTTP_USUARIO'][0]
                 ,'senha'  => $headers['HTTP_SENHA'][0]
             ];
-            die(var_dump($dados_login));
+            
             $LoginDAO = $this->container['LoginDAO'];
 
             $resultadoConsultaLogin = $LoginDAO->consultaLogin($dados_login);
