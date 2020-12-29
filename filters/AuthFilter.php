@@ -21,11 +21,11 @@ class AuthFilter
             if(!(isset($headers['HTTP_USUARIO']) && isset($headers['HTTP_SENHA'])))
                 return $response->withStatus(403);
             
-	    $dados_login = [
-		'usuario' => $headers['HTTP_USUARIO'][0]
-		,'senha'  => $headers['HTTP_SENHA'][0]
-		];
-
+            $dados_login = [
+                'usuario' => $headers['HTTP_USUARIO'][0]
+                ,'senha'  => $headers['HTTP_SENHA'][0]
+            ];
+            die(var_dump($dados_login));
             $LoginDAO = $this->container['LoginDAO'];
 
             $resultadoConsultaLogin = $LoginDAO->consultaLogin($dados_login);
