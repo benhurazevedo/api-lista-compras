@@ -1,13 +1,12 @@
 <?php
+use \Slim\App;
 
-require 'vendor/autoload.php';
+require_once "bootstrap.php";
 
-require 'config.php';
+$app = new App($AppConfig);
 
-#dempendencies
-require 'dependencies.php';
+require_once "dependencies.php";
 
-#routes
 require 'routes/routes.php';
 
 $app->run();

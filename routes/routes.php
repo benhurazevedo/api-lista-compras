@@ -2,9 +2,9 @@
 use \Slim\App as App;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
-use \controllers\ListaController as ListaController;
-use \controllers\LoginController as LoginController;
-use \filters\AuthFilter as AuthFilter;
+use \controllers\ListaController;
+use \controllers\LoginController;
+use \filters\AuthFilter;
 
 $app->post('/login', 'LoginController');
 

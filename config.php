@@ -1,9 +1,21 @@
 <?php
 
-$app = new \Slim\App([
-    'settings' => [
-        'displayErrorDetails' => true
-		,'CONNECTION_STRING' => 'pgsql:host=localhost;dbname=lista_compras;user=usrLista;password=123456'
-    ]
-]);
+$AppConfig = [
+	'settings' => [
+		'displayErrorDetails' => true
+        ,'doctrine' => [
+            'conn' => [
+                "driver" => "pdo_sqlite",
+                "path" => __DIR__."\db.sqlite"
+            ]
+            ,'models' => [
+                __DIR__."\models"
+            ]
+            ,'isDevMode' => true 
+            ,'proxyDir' => null 
+            ,'cache' => null 
+            ,'useSimpleAnnotationReader' => false
+        ]
+	]
+];
 ?>

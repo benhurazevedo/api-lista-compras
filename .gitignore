@@ -1,4 +1,4 @@
 fcgid-bin/
-vendor/*
-cache/twig/3a*
-cache/twig/68*
+vendor
+cache
+composer.lock

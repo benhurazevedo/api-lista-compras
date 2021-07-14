@@ -1,17 +1,19 @@
 <?php
 namespace controllers;
 
-use Slim\Router;
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
+use \Slim\Container;
+use \Item;
 
 final class ListaController
 {
-	private $router;
 	private $container;
 	public function __construct($container)
     {
         $this->container = $container;
     }
-	public function list($req, $res, array $args)
+	public function list(Request $req, Response $res, array $args)
 	{
         try 
         {
@@ -23,13 +25,19 @@ final class ListaController
             return $res->withStatus(500);
         }
     }
-    public function add($req, $res, array $args)
+    public function add(Request $req, Response $res, array $args)
     {
         try
         {
             $postParams = $req->getParsedBody();
+            $item = new Item();
+            if(!isset($postParams['descricao']))
+                throw new \Exception();
+            $item->setDescricao($postParams['descricao']);
+            if($item->getDescricao() == "")
+                throw new \Exception();
             $ListaDAO = $this->container['ListaDAO'];
-            return $res->withJson(['cod' => $ListaDAO->add($postParams)], 200);
+            return $res->withJson(['id' => $ListaDAO->add($item)], 200);
         }
         catch(\Exception $e)
         {
@@ -40,12 +48,15 @@ final class ListaController
     {
         try 
         {
-            if(!is_numeric($args['codigo']))
+            if(!is_numeric($args['id']))
             {
                 return $res-withStatus(401);
             }
             $ListaDAO = $this->container['ListaDAO'];
-            $ListaDAO->remove($args['codigo']);
+            $item = $ListaDAO->get($args['id']);
+            if($item == null)
+                return $res->withStatus(401);
+            $ListaDAO->remove($item);
             return $res->withStatus(200);
         }
         catch(\Exception $e)

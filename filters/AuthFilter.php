@@ -4,6 +4,7 @@ namespace filters;
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 use \Slim\Container as Container;
+use \Usuario;
 
 class AuthFilter
 {
@@ -21,14 +22,13 @@ class AuthFilter
             if(!(isset($headers['HTTP_USUARIO']) && isset($headers['HTTP_SENHA'])))
                 return $response->withStatus(403);
             
-            $dados_login = [
-                'usuario' => $headers['HTTP_USUARIO'][0]
-                ,'senha'  => $headers['HTTP_SENHA'][0]
-            ];
+            $usuario = new Usuario();
+            $usuario->setUsuario($headers['HTTP_USUARIO'][0]);
+            $usuario->setSenha($headers['HTTP_SENHA'][0]);
             
             $LoginDAO = $this->container['LoginDAO'];
 
-            $resultadoConsultaLogin = $LoginDAO->consultaLogin($dados_login);
+            $resultadoConsultaLogin = $LoginDAO->consultaLogin($usuario);
 
             if($resultadoConsultaLogin == 1)
                 return $next($request, $response);

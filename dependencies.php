@@ -1,17 +1,19 @@
 <?php
-use dbService\ConectorDAO as ConectorDAO;
-use dbService\ListaDAO as ListaDAO;
-use dbService\LoginDAO as LoginDAO;
-use controllers\ListaController as ListaController;
-use controllers\LoginController as LoginController;
-use filters\AuthFilter as AuthFilter;
+#use dbService\ConectorDAO as ConectorDAO;
+use dbService\ListaDAO;
+use DAOs\LoginDAO;
+use controllers\ListaController;
+use controllers\LoginController;
+use filters\AuthFilter;
 
 // DIC configuration
 $container = $app->getContainer();
 
-$container['dbConnService'] = function ($c)
+$container['entityManager'] = function($container)
 {
-    return new ConectorDAO ($c);
+	global $entityManager;
+
+	return $entityManager;
 };
 
 // db service

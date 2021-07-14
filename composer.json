@@ -1,12 +1,26 @@
 {
+    "name": "benhu/api-lista-compras",
+    "type": "project",
+    "license": "lgpl",
+    "authors": [
+        {
+            "name": "benhur alencar azevedo",
+            "email": "benhur.azevedo@hotmail.com"
+        }
+    ],
     "require": {
-        "slim/slim": "^3.0"
+        "slim/slim": "3.*",
+        "doctrine/orm": "2.6.2",
+        "symfony/yaml": "2.*"
+    },
+    "autoload" : {
+        "psr-4": {
+            "": "models"
+            ,"controllers\\": "controllers"
+            ,"services\\": "services"
+            ,"DAOs\\": "DAOs"
+            ,"filters\\": "filters"
+        }
     }
-	,"autoload": {
-		"psr-4": {
-			"filters\\": "filters"
-			,"controllers\\": "controllers"
-			,"dbService\\": "services/dbService"
-		}
-	}
 }
+
